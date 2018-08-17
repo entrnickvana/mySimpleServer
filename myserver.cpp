@@ -1,4 +1,4 @@
-#include "myserver.h"
+    #include "myserver.h"
 #include <iostream>
 #include <string>
 
@@ -47,11 +47,11 @@ void myServer::newConnection()
 
         qDebug() << "Num bytes available: " << num_bytes;
 
-        arr = new QByteArray(socket->readAll(), 1024);
+        arr = new QByteArray(socket->readAll(), 64);
 
-        qDebug() << "Sent data from client:  "<< arr->data();
+        qDebug() << "Sent data from client:  "<< (int)arr->data()[0] << "\t" << (int)arr->data()[1] << "\t" << (int)arr->data()[2] << "\r";
 
-    }while(arr->toStdString() != "end");
+    }while(arr->data()[0] != 'z');
 
 
     socket->close();
